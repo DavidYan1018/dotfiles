@@ -1,0 +1,11 @@
+#!/bin/bash
+
+mic_vol=$(amixer get Capture | grep "%" | cut -d ' ' -f 8 | tr -d '[' | tr -d ']' | head -n 1| tr -d ' ')
+
+
+str="on"
+if test "$mic_vol" == "$str"; then 
+	echo "  : UNMUTE"
+else
+	echo "  : MUTE"
+fi
