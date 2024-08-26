@@ -1,0 +1,46 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use utf8;
+
+my $acpi;
+my $status;
+my $percent;
+my $full_text;
+my $short_text;
+my $bat_number = $ENV{BLOCK_INSTANCE} || 0;
+
+# read the first line of the "acpi" command output
+open (ACPI, "acpi -b | grep 'Battery $bat_number' |") or die;
+$acpi = <ACPI>;
+close(ACPI);
+
+# fail on unexpected output
+if ($acpi !~ /: (\w+), (\d+)%/) {
+      die "$acpi\n";
+}
+
+$status = $1;
+$percent = $2;
+#$full_text = ' ';
+
+if ($percent == 100) {
+    $full_text = '🔋';
+} elsif ($percent >= 70) {
+    $full_text = ' ';
+} elsif ($percent >= 50) {
+    $full_text = ' ';
+} elsif ($percent >= 20) {
+    $full_text = ' ';
+} elsif ($percent >= 0) {
+    $full_text = ' ';
+}
+
+if ($status eq 'Charging') {
+    $full_text='󰠠 ';
+}
+
+print " $full_text $percent%\n";
+
+exit(0);

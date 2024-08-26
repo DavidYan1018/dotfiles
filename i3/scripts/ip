@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#ip=$(ifconfig  wlp3s0 | grep inet | awk 'NR==1{printf(" %s\n", $2)}')
+
+#echo $ip
+#!/bin/bash
+
+ip=$(ip addr show wlp3s0 | grep 'inet ' | awk '{print $2}' | cut -d/ -f1)
+
+echo $ip
+
