@@ -1,0 +1,8 @@
+#!/bin/bash 
+  gpu_fan=$(sensors | grep "gpu_fan" | tr -d 'gpu_fan:' | tr -d ' ' | tr -d 'RPM')
+  
+echo $gpu_fan
+
+
+
+

@@ -1,0 +1,3 @@
+#!/bin/bash 
+cpu_fan=$(sensors | grep "cpu_fan" | tr -d 'cpu_fan:' | tr -d ' ' | tr -d 'RPM')
+echo $cpu_fan "rpm"
